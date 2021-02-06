@@ -35,7 +35,8 @@ export type SqsQueueUrl = t.TypeOf<typeof SqsQueueUrl>
 /**
  * @since 0.0.1
  */
-export const sqsQueueUrl = (account: AwsAccountID) => (region: AwsRegion) => (
-    queueName: SqsQueueName
-): SqsQueueUrl =>
-    `https://sqs.${region}.amazonaws.com/${account}/${queueName}` as SqsQueueUrl
+export const sqsQueueUrl = (parameters: {
+    account: AwsAccountID
+    region: AwsRegion
+}) => (queueName: SqsQueueName): SqsQueueUrl =>
+    `https://sqs.${parameters.region}.amazonaws.com/${parameters.account}/${queueName}` as SqsQueueUrl

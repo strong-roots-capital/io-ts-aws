@@ -16,6 +16,7 @@ Added in v0.0.1
   - [SnsTopicArn](#snstopicarn)
   - [SnsTopicArn (type alias)](#snstopicarn-type-alias)
   - [SnsTopicArnBrand (interface)](#snstopicarnbrand-interface)
+  - [snsTopicArn](#snstopicarn)
 
 ---
 
@@ -52,3 +53,16 @@ export interface SnsTopicArnBrand {
 ```
 
 Added in v0.0.1
+
+## snsTopicArn
+
+**Signature**
+
+```ts
+export declare const snsTopicArn: (parameters: {
+  account: t.Branded<string, AwsAccountIDBrand>
+  region: t.Branded<string, AwsRegionBrand>
+}) => (topicName: t.Branded<string, SnsTopicNameBrand>) => t.Branded<string, SnsTopicArnBrand>
+```
+
+Added in v0.0.2

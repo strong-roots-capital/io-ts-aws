@@ -3,7 +3,9 @@
  */
 
 import * as t from 'io-ts'
-import { snsTopicNameRegex } from './SnsTopicName'
+import { snsTopicNameRegex, SnsTopicName } from './SnsTopicName'
+import { AwsAccountID } from './AwsAccountID'
+import { AwsRegion } from './AwsRegion'
 
 /**
  * @since 0.0.1
@@ -32,3 +34,19 @@ export const SnsTopicArn = t.brand(
  * @since 0.0.1
  */
 export type SnsTopicArn = t.TypeOf<typeof SnsTopicArn>
+
+/**
+ * @since 0.0.2
+ */
+export const snsTopicArn = (parameters: {
+    account: AwsAccountID
+    region: AwsRegion
+}) => (topicName: SnsTopicName): SnsTopicArn =>
+    [
+        'arn',
+        'aws',
+        'sns',
+        parameters.region,
+        parameters.account,
+        topicName,
+    ].join(':') as SnsTopicArn

@@ -59,11 +59,10 @@ Added in v0.0.1
 **Signature**
 
 ```ts
-export declare const sqsFifoQueueUrl: (
+export declare const sqsFifoQueueUrl: (parameters: {
   account: t.Branded<string, AwsAccountIDBrand>
-) => (
   region: t.Branded<string, AwsRegionBrand>
-) => (queueName: t.Branded<string, SqsFifoQueueNameBrand>) => t.Branded<string, SqsFifoQueueUrlBrand>
+}) => (queueName: t.Branded<string, SqsFifoQueueNameBrand>) => t.Branded<string, SqsFifoQueueUrlBrand>
 ```
 
 Added in v0.0.1

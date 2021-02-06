@@ -35,7 +35,8 @@ export type SqsFifoQueueUrl = t.TypeOf<typeof SqsFifoQueueUrl>
 /**
  * @since 0.0.1
  */
-export const sqsFifoQueueUrl = (account: AwsAccountID) => (
+export const sqsFifoQueueUrl = (parameters: {
+    account: AwsAccountID
     region: AwsRegion
-) => (queueName: SqsFifoQueueName): SqsFifoQueueUrl =>
-    `https://sqs.${region}.amazonaws.com/${account}/${queueName}` as SqsFifoQueueUrl
+}) => (queueName: SqsFifoQueueName): SqsFifoQueueUrl =>
+    `https://sqs.${parameters.region}.amazonaws.com/${parameters.account}/${queueName}` as SqsFifoQueueUrl
