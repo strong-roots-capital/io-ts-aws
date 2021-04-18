@@ -3,16 +3,16 @@
  */
 
 import * as t from 'io-ts'
+import { flow } from 'fp-ts/function'
 import { nonEmptyArray, IntFromString, NumberFromString } from 'io-ts-types'
 import { AwsRegion } from './AwsRegion'
-
-// TODO: update to work with aws-sdk-js-v3
+import { EventSourceArn } from './EventSourceArn'
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
  *
- * Note: currently only supports streams configured with `NewImage`
- * PRs welcome
+ * Note: currently only supports streams configured with `NewImage`.
+ * PRs welcome!
  *
  * @since 0.0.1
  */
@@ -44,92 +44,98 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
                 NEW_AND_OLD_IMAGES: null,
             }),
         }),
-        eventSourceARN: t.string,
+        eventSourceARN: EventSourceArn,
     })
 
-const AnyDynamoEvent = DynamoBaseEvent(
+type DynamoBaseEvent = ReturnType<ReturnType<typeof DynamoBaseEvent>>
+
+/**
+ * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
+ *
+ * Note: currently only supports streams configured with `NewImage`.
+ * PRs welcome!
+ *
+ * @since 0.0.3
+ */
+export const AnyDynamoEvent = DynamoBaseEvent(
     t.keyof({
         INSERT: null,
         MODIFY: null,
         REMOVE: null,
     })
 )
-const InsertEvent = DynamoBaseEvent(t.literal('INSERT'))
-const ModifyEvent = DynamoBaseEvent(t.literal('MODIFY'))
-const RemoveEvent = DynamoBaseEvent(t.literal('REMOVE'))
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
  *
- * Note: currently only supports streams configured with `NewImage`
- * PRs welcome
+ * Note: currently only supports streams configured with `NewImage`.
+ * PRs welcome!
  *
- * @since 0.0.1
+ * @since 0.0.3
  */
-export const DynamoEvent = <K extends t.Mixed, I extends t.Mixed>({
-    keys,
-    newImage,
-}: {
-    keys: K
-    newImage: I
-}) =>
-    t.type({
-        Records: nonEmptyArray(AnyDynamoEvent({ keys, newImage })),
-    })
+export const DynamoInsertEvent = DynamoBaseEvent(t.literal('INSERT'))
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
  *
- * Note: currently only supports streams configured with `NewImage`
- * PRs welcome
+ * Note: currently only supports streams configured with `NewImage`.
+ * PRs welcome!
  *
- * @since 0.0.1
+ * @since 0.0.3
  */
-export const DynamoInsertEvent = <K extends t.Mixed, I extends t.Mixed>({
-    keys,
-    newImage,
-}: {
-    keys: K
-    newImage: I
-}) =>
-    t.type({
-        Records: nonEmptyArray(InsertEvent({ keys, newImage })),
-    })
+export const DynamoModifyEvent = DynamoBaseEvent(t.literal('MODIFY'))
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
  *
- * Note: currently only supports streams configured with `NewImage`
- * PRs welcome
+ * Note: currently only supports streams configured with `NewImage`.
+ * PRs welcome!
  *
- * @since 0.0.1
+ * @since 0.0.3
  */
-export const DynamoModifyEvent = <K extends t.Mixed, I extends t.Mixed>({
-    keys,
-    newImage,
-}: {
-    keys: K
-    newImage: I
-}) =>
-    t.type({
-        Records: nonEmptyArray(ModifyEvent({ keys, newImage })),
-    })
+export const DynamoRemoveEvent = DynamoBaseEvent(t.literal('REMOVE'))
 
 /**
- * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
+ * https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/time-to-live-ttl-streams.html
  *
- * Note: currently only supports streams configured with `NewImage`
- * PRs welcome
+ * Note: currently only supports streams configured with `NewImage`.
+ * PRs welcome!
  *
- * @since 0.0.1
+ * @since 0.0.3
  */
-export const DynamoRemoveEvent = <K extends t.Mixed, I extends t.Mixed>({
-    keys,
-    newImage,
-}: {
-    keys: K
-    newImage: I
-}) =>
+export const DynamoTimeToLiveRemoveEvent = flow(
+    DynamoBaseEvent(t.literal('REMOVE')),
+    removeEvent =>
+        t.intersection([
+            removeEvent,
+            t.type({
+                userIdentity: t.type({
+                    type: t.literal('Service'),
+                    principalId: t.literal('dynamodb.amazonaws.com'),
+                }),
+            }),
+        ])
+)
+
+/**
+ * Successfully decodes any dynamo event.
+ *
+ * Note: currently only supports streams configured with `NewImage`.
+ * PRs welcome!
+ *
+ * @since 0.0.3
+ */
+export const DynamoUnknownEvent = AnyDynamoEvent({
+    keys: t.unknown,
+    newImage: t.unknown,
+})
+
+/**
+ * @since 0.0.3
+ */
+export const DynamoStreamEvents = <A extends DynamoBaseEvent>(
+    events: [A, A, ...A[]]
+) =>
     t.type({
-        Records: nonEmptyArray(RemoveEvent({ keys, newImage })),
+        Records: nonEmptyArray(t.union(events)),
     })

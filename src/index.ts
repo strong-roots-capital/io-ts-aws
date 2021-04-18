@@ -9,6 +9,31 @@ export * from './AwsRegion'
 export * from './AwsAccountID'
 
 /**
+ * @since 0.0.3
+ */
+export * from './EventSourceArn'
+
+/**
+ * @since 0.0.1
+ */
+export * from './LambdaSnsEvent'
+
+/**
+ * @since 0.0.1
+ */
+export * from './LambdaSqsEvent'
+
+/**
+ * @since 0.0.1
+ */
+export * from './LambdaSqsFifoEvent'
+
+/**
+ * @since 0.0.1
+ */
+export * from './LambdaDynamoStreamEvent'
+
+/**
  * @since 0.0.1
  */
 export * from './SnsTopicName'
@@ -47,23 +72,3 @@ export * from './SqsFifoQueueUrl'
  * @since 0.0.1
  */
 export * from './SqsFifoQueueArn'
-
-/**
- * @since 0.0.1
- */
-export * from './LambdaSnsEvent'
-
-/**
- * @since 0.0.1
- */
-export * from './LambdaSqsEvent'
-
-/**
- * @since 0.0.1
- */
-export * from './LambdaSqsFifoEvent'
-
-/**
- * @since 0.0.1
- */
-export * from './LambdaDynamoStreamEvent'

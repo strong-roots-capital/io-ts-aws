@@ -20,6 +20,7 @@ const DateFromNumberFromString = NumberFromString.pipe(DateFromNumber)
  */
 export const LambdaSqsFifoEvent = <C extends t.Mixed>(codec: C) =>
     t.type({
+        // DISCUSS: can we use a readonly nonempty array here?
         Records: nonEmptyArray(
             t.type({
                 messageId: t.string,
