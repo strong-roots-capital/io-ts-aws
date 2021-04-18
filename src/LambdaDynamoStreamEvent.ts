@@ -117,6 +117,10 @@ export const DynamoTimeToLiveRemoveEvent = flow(
         ])
 )
 
+type DynamoTimeToLiveRemoveEvent = ReturnType<
+    typeof DynamoTimeToLiveRemoveEvent
+>
+
 /**
  * Successfully decodes any dynamo event.
  *
@@ -133,9 +137,14 @@ export const DynamoUnknownEvent = AnyDynamoEvent({
 /**
  * @since 0.0.3
  */
-export const DynamoStreamEvents = <A extends DynamoBaseEvent>(
-    events: [A, A, ...A[]]
+export const DynamoStreamEvents = <
+    // FIXME: looking for a cleaner, more flexible way to type this
+    A extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent,
+    B extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent,
+    C extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent
+>(
+    events: readonly [A, B, ...C[]]
 ) =>
     t.type({
-        Records: nonEmptyArray(t.union(events)),
+        Records: nonEmptyArray(t.union(events as [A, B, ...C[]])),
     })

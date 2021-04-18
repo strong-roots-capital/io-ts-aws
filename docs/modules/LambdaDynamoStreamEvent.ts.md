@@ -171,24 +171,123 @@ Added in v0.0.3
 
 ```ts
 export declare const DynamoStreamEvents: <
-  A extends t.TypeC<{
-    eventID: IntFromStringC
-    eventName: t.Mixed
-    eventSource: t.LiteralC<'aws:dynamodb'>
-    eventVersion: NumberFromStringC
-    awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
-    dynamodb: t.TypeC<{
-      Keys: t.Mixed
-      NewImage: t.Mixed
-      SequenceNumber: IntFromStringC
-      SizeBytes: t.NumberC
-      StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
-    }>
-    eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
-  }>
+  A extends
+    | t.TypeC<{
+        eventID: IntFromStringC
+        eventName: t.Mixed
+        eventSource: t.LiteralC<'aws:dynamodb'>
+        eventVersion: NumberFromStringC
+        awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
+        dynamodb: t.TypeC<{
+          Keys: t.Mixed
+          NewImage: t.Mixed
+          SequenceNumber: IntFromStringC
+          SizeBytes: t.NumberC
+          StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
+        }>
+        eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
+      }>
+    | t.IntersectionC<
+        [
+          t.TypeC<{
+            eventID: IntFromStringC
+            eventName: t.LiteralC<'REMOVE'>
+            eventSource: t.LiteralC<'aws:dynamodb'>
+            eventVersion: NumberFromStringC
+            awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
+            dynamodb: t.TypeC<{
+              Keys: t.Mixed
+              NewImage: t.Mixed
+              SequenceNumber: IntFromStringC
+              SizeBytes: t.NumberC
+              StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
+            }>
+            eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
+          }>,
+          t.TypeC<{
+            userIdentity: t.TypeC<{ type: t.LiteralC<'Service'>; principalId: t.LiteralC<'dynamodb.amazonaws.com'> }>
+          }>
+        ]
+      >,
+  B extends
+    | t.TypeC<{
+        eventID: IntFromStringC
+        eventName: t.Mixed
+        eventSource: t.LiteralC<'aws:dynamodb'>
+        eventVersion: NumberFromStringC
+        awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
+        dynamodb: t.TypeC<{
+          Keys: t.Mixed
+          NewImage: t.Mixed
+          SequenceNumber: IntFromStringC
+          SizeBytes: t.NumberC
+          StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
+        }>
+        eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
+      }>
+    | t.IntersectionC<
+        [
+          t.TypeC<{
+            eventID: IntFromStringC
+            eventName: t.LiteralC<'REMOVE'>
+            eventSource: t.LiteralC<'aws:dynamodb'>
+            eventVersion: NumberFromStringC
+            awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
+            dynamodb: t.TypeC<{
+              Keys: t.Mixed
+              NewImage: t.Mixed
+              SequenceNumber: IntFromStringC
+              SizeBytes: t.NumberC
+              StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
+            }>
+            eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
+          }>,
+          t.TypeC<{
+            userIdentity: t.TypeC<{ type: t.LiteralC<'Service'>; principalId: t.LiteralC<'dynamodb.amazonaws.com'> }>
+          }>
+        ]
+      >,
+  C extends
+    | t.TypeC<{
+        eventID: IntFromStringC
+        eventName: t.Mixed
+        eventSource: t.LiteralC<'aws:dynamodb'>
+        eventVersion: NumberFromStringC
+        awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
+        dynamodb: t.TypeC<{
+          Keys: t.Mixed
+          NewImage: t.Mixed
+          SequenceNumber: IntFromStringC
+          SizeBytes: t.NumberC
+          StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
+        }>
+        eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
+      }>
+    | t.IntersectionC<
+        [
+          t.TypeC<{
+            eventID: IntFromStringC
+            eventName: t.LiteralC<'REMOVE'>
+            eventSource: t.LiteralC<'aws:dynamodb'>
+            eventVersion: NumberFromStringC
+            awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
+            dynamodb: t.TypeC<{
+              Keys: t.Mixed
+              NewImage: t.Mixed
+              SequenceNumber: IntFromStringC
+              SizeBytes: t.NumberC
+              StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
+            }>
+            eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
+          }>,
+          t.TypeC<{
+            userIdentity: t.TypeC<{ type: t.LiteralC<'Service'>; principalId: t.LiteralC<'dynamodb.amazonaws.com'> }>
+          }>
+        ]
+      >
 >(
-  events: [A, A, ...A[]]
-) => t.TypeC<{ Records: NonEmptyArrayC<t.UnionC<[A, A, ...A[]]>> }>
+  events: readonly [A, B, ...C[]]
+) => t.TypeC<{ Records: NonEmptyArrayC<t.UnionC<[A, B, ...C[]]>> }>
 ```
 
 Added in v0.0.3
