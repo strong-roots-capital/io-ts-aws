@@ -20,6 +20,7 @@ Added in v0.0.1
   - [DynamoStreamEvents](#dynamostreamevents)
   - [DynamoTimeToLiveRemoveEvent](#dynamotimetoliveremoveevent)
   - [DynamoUnknownEvent](#dynamounknownevent)
+  - [DynamoUnknownEvent (type alias)](#dynamounknownevent-type-alias)
 
 ---
 
@@ -356,6 +357,16 @@ export declare const DynamoUnknownEvent: t.TypeC<{
   }>
   eventSourceARN: t.BrandC<t.StringC, EventSourceArnBrand>
 }>
+```
+
+Added in v0.0.3
+
+## DynamoUnknownEvent (type alias)
+
+**Signature**
+
+```ts
+export type DynamoUnknownEvent = t.TypeOf<typeof DynamoUnknownEvent>
 ```
 
 Added in v0.0.3

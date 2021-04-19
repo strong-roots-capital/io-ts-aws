@@ -141,6 +141,11 @@ export const DynamoUnknownEvent = AnyDynamoEvent({
 /**
  * @since 0.0.3
  */
+export type DynamoUnknownEvent = t.TypeOf<typeof DynamoUnknownEvent>
+
+/**
+ * @since 0.0.3
+ */
 export const DynamoStreamEvents = <
     // FIXME: looking for a cleaner, more flexible way to type this
     A extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent,
