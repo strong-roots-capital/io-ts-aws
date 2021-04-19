@@ -9,6 +9,11 @@ export * from './AwsRegion'
 export * from './AwsAccountID'
 
 /**
+ * @since 0.0.5
+ */
+export * from './DynamoStreamEventID'
+
+/**
  * @since 0.0.3
  */
 export * from './EventSourceArn'
