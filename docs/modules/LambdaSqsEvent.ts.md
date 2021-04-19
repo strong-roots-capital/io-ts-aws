@@ -1,6 +1,6 @@
 ---
 title: LambdaSqsEvent.ts
-nav_order: 7
+nav_order: 8
 parent: Modules
 ---
 
@@ -40,7 +40,7 @@ export declare const LambdaSqsEvent: <C extends t.Mixed>(
         SenderId: t.StringC
         ApproximateFirstReceiveTimestamp: t.Type<Date, string, unknown>
       }>
-      messageAttributes: t.ObjectC
+      messageAttributes: t.UnknownRecordC
       md5OfBody: t.StringC
       eventSource: t.LiteralC<'aws:sqs'>
       eventSourceARN: t.BrandC<t.StringC, SqsQueueArnBrand>

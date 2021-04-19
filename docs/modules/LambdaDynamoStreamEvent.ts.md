@@ -1,6 +1,6 @@
 ---
 title: LambdaDynamoStreamEvent.ts
-nav_order: 5
+nav_order: 6
 parent: Modules
 ---
 
@@ -42,7 +42,7 @@ export declare const AnyDynamoEvent: <K, I>({
   keys: K
   newImage: I
 }) => t.TypeC<{
-  eventID: IntFromStringC
+  eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
   eventName: t.KeyofC<{ INSERT: any; MODIFY: any; REMOVE: any }>
   eventSource: t.LiteralC<'aws:dynamodb'>
   eventVersion: NumberFromStringC
@@ -77,7 +77,7 @@ export declare const DynamoInsertEvent: <K, I>({
   keys: K
   newImage: I
 }) => t.TypeC<{
-  eventID: IntFromStringC
+  eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
   eventName: t.LiteralC<'INSERT'>
   eventSource: t.LiteralC<'aws:dynamodb'>
   eventVersion: NumberFromStringC
@@ -112,7 +112,7 @@ export declare const DynamoModifyEvent: <K, I>({
   keys: K
   newImage: I
 }) => t.TypeC<{
-  eventID: IntFromStringC
+  eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
   eventName: t.LiteralC<'MODIFY'>
   eventSource: t.LiteralC<'aws:dynamodb'>
   eventVersion: NumberFromStringC
@@ -147,7 +147,7 @@ export declare const DynamoRemoveEvent: <K, I>({
   keys: K
   newImage: I
 }) => t.TypeC<{
-  eventID: IntFromStringC
+  eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
   eventName: t.LiteralC<'REMOVE'>
   eventSource: t.LiteralC<'aws:dynamodb'>
   eventVersion: NumberFromStringC
@@ -173,7 +173,7 @@ Added in v0.0.3
 export declare const DynamoStreamEvents: <
   A extends
     | t.TypeC<{
-        eventID: IntFromStringC
+        eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
         eventName: t.Mixed
         eventSource: t.LiteralC<'aws:dynamodb'>
         eventVersion: NumberFromStringC
@@ -190,7 +190,7 @@ export declare const DynamoStreamEvents: <
     | t.IntersectionC<
         [
           t.TypeC<{
-            eventID: IntFromStringC
+            eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
             eventName: t.LiteralC<'REMOVE'>
             eventSource: t.LiteralC<'aws:dynamodb'>
             eventVersion: NumberFromStringC
@@ -211,7 +211,7 @@ export declare const DynamoStreamEvents: <
       >,
   B extends
     | t.TypeC<{
-        eventID: IntFromStringC
+        eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
         eventName: t.Mixed
         eventSource: t.LiteralC<'aws:dynamodb'>
         eventVersion: NumberFromStringC
@@ -228,7 +228,7 @@ export declare const DynamoStreamEvents: <
     | t.IntersectionC<
         [
           t.TypeC<{
-            eventID: IntFromStringC
+            eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
             eventName: t.LiteralC<'REMOVE'>
             eventSource: t.LiteralC<'aws:dynamodb'>
             eventVersion: NumberFromStringC
@@ -249,7 +249,7 @@ export declare const DynamoStreamEvents: <
       >,
   C extends
     | t.TypeC<{
-        eventID: IntFromStringC
+        eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
         eventName: t.Mixed
         eventSource: t.LiteralC<'aws:dynamodb'>
         eventVersion: NumberFromStringC
@@ -266,7 +266,7 @@ export declare const DynamoStreamEvents: <
     | t.IntersectionC<
         [
           t.TypeC<{
-            eventID: IntFromStringC
+            eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
             eventName: t.LiteralC<'REMOVE'>
             eventSource: t.LiteralC<'aws:dynamodb'>
             eventVersion: NumberFromStringC
@@ -308,7 +308,7 @@ export declare const DynamoTimeToLiveRemoveEvent: <K extends t.Mixed, I extends 
 }) => t.IntersectionC<
   [
     t.TypeC<{
-      eventID: IntFromStringC
+      eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
       eventName: t.LiteralC<'REMOVE'>
       eventSource: t.LiteralC<'aws:dynamodb'>
       eventVersion: NumberFromStringC
@@ -342,7 +342,7 @@ PRs welcome!
 
 ```ts
 export declare const DynamoUnknownEvent: t.TypeC<{
-  eventID: IntFromStringC
+  eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
   eventName: t.KeyofC<{ INSERT: any; MODIFY: any; REMOVE: any }>
   eventSource: t.LiteralC<'aws:dynamodb'>
   eventVersion: NumberFromStringC
