@@ -31,7 +31,7 @@ export const LambdaSqsEvent = <C extends t.Mixed>(codec: C) =>
                     SenderId: t.string,
                     ApproximateFirstReceiveTimestamp: DateFromNumberFromString,
                 }),
-                messageAttributes: t.object,
+                messageAttributes: t.UnknownRecord,
                 md5OfBody: t.string,
                 eventSource: t.literal('aws:sqs'),
                 eventSourceARN: SqsQueueArn,
