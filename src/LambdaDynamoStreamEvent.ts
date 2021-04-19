@@ -7,6 +7,7 @@ import { flow } from 'fp-ts/function'
 import { nonEmptyArray, IntFromString, NumberFromString } from 'io-ts-types'
 import { AwsRegion } from './AwsRegion'
 import { EventSourceArn } from './EventSourceArn'
+import { DynamoStreamEventID } from './DynamoStreamEventID'
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
@@ -26,8 +27,10 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
     keys: K
     newImage: I
 }) =>
+    // Note to the maintainers: see desired format here, we are not
+    // quite there yet https://stackoverflow.com/a/63840612
     t.type({
-        eventID: IntFromString,
+        eventID: DynamoStreamEventID,
         eventName: eventName,
         eventSource: t.literal('aws:dynamodb'),
         eventVersion: NumberFromString,
@@ -44,6 +47,7 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
                 NEW_AND_OLD_IMAGES: null,
             }),
         }),
+        // TODO: this should be a DynamoArn
         eventSourceARN: EventSourceArn,
     })
 
@@ -144,6 +148,7 @@ export const DynamoStreamEvents = <
     C extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent
 >(
     events: readonly [A, B, ...C[]]
+    // FIXME: need to preserve static typing on return type
 ) =>
     t.type({
         Records: nonEmptyArray(t.union(events as [A, B, ...C[]])),
