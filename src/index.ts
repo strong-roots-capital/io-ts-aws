@@ -14,6 +14,11 @@ export * from './AwsAccountID'
 export * from './DynamoStreamEventID'
 
 /**
+ * @since 0.0.8
+ */
+export * from './EventBridgeEvent'
+
+/**
  * @since 0.0.3
  */
 export * from './EventSourceArn'
