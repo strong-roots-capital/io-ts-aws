@@ -24,6 +24,16 @@ export * from './EventBridgeEvent'
 export * from './EventSourceArn'
 
 /**
+ * @since 0.0.9
+ */
+export * from './LambdaFunctionArn'
+
+/**
+ * @since 0.0.9
+ */
+export * from './LambdaFunctionName'
+
+/**
  * @since 0.0.1
  */
 export * from './LambdaSnsEvent'
