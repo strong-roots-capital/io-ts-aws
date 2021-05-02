@@ -4,7 +4,7 @@
 
 import * as t from 'io-ts'
 import { flow } from 'fp-ts/function'
-import { nonEmptyArray, IntFromString, NumberFromString } from 'io-ts-types'
+import { nonEmptyArray, DateFromUnixTime } from 'io-ts-types'
 import { AwsRegion } from './AwsRegion'
 import { EventSourceArn } from './EventSourceArn'
 import { DynamoStreamEventID } from './DynamoStreamEventID'
@@ -18,14 +18,11 @@ import { DynamoStreamEventID } from './DynamoStreamEventID'
  * @since 0.0.1
  */
 const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
-    K extends t.Mixed,
-    I extends t.Mixed
+    K extends t.Mixed
 >({
     keys,
-    newImage,
 }: {
     keys: K
-    newImage: I
 }) =>
     // Note to the maintainers: see desired format here, we are not
     // quite there yet https://stackoverflow.com/a/63840612
@@ -33,12 +30,20 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
         eventID: DynamoStreamEventID,
         eventName: eventName,
         eventSource: t.literal('aws:dynamodb'),
-        eventVersion: NumberFromString,
+        // FIXME: sometimes this property is a string (INSERT)
+        // sometimes number (REMOVE)?  This documentation indicates it
+        // should be a string
+        // https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_Record.html
+        // eventVersion: NumberFromString,
         awsRegion: AwsRegion,
         dynamodb: t.type({
+            ApproximateCreationDateTime: DateFromUnixTime,
             Keys: keys,
-            NewImage: newImage,
-            SequenceNumber: IntFromString,
+            // FIXME: sometimes this property is a string (INSERT)
+            // sometimes number (REMOVE)?  This documentation
+            // indicates it should be a string:
+            // https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_StreamRecord.html
+            // SequenceNumber: t.string,
             SizeBytes: t.number,
             StreamViewType: t.keyof({
                 KEYS_ONLY: null,
@@ -47,11 +52,9 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
                 NEW_AND_OLD_IMAGES: null,
             }),
         }),
-        // TODO: this should be a DynamoArn
+        // TODO: narrow to a DynamoArn
         eventSourceARN: EventSourceArn,
     })
-
-type DynamoBaseEvent = ReturnType<ReturnType<typeof DynamoBaseEvent>>
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
@@ -77,7 +80,47 @@ export const AnyDynamoEvent = DynamoBaseEvent(
  *
  * @since 0.0.3
  */
-export const DynamoInsertEvent = DynamoBaseEvent(t.literal('INSERT'))
+export const DynamoInsertEvent = <K extends t.Mixed, I extends t.Mixed>({
+    keys,
+    newImage,
+}: {
+    keys: K
+    newImage: I
+}) =>
+    // Note to the maintainers: see desired format here, we are not
+    // quite there yet https://stackoverflow.com/a/63840612
+    t.type({
+        eventID: DynamoStreamEventID,
+        eventName: t.literal('INSERT'),
+        eventSource: t.literal('aws:dynamodb'),
+        // FIXME: sometimes this property is a string (INSERT)
+        // sometimes number (REMOVE)?  This documentation indicates it
+        // should be a string
+        // https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_Record.html
+        // eventVersion: NumberFromString,
+        awsRegion: AwsRegion,
+        dynamodb: t.type({
+            ApproximateCreationDateTime: DateFromUnixTime,
+            Keys: keys,
+            NewImage: newImage,
+            // FIXME: sometimes this property is a string (INSERT)
+            // sometimes number (REMOVE)?  This documentation
+            // indicates it should be a string:
+            // https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_StreamRecord.html
+            // SequenceNumber: t.string,
+            SizeBytes: t.number,
+            StreamViewType: t.keyof({
+                KEYS_ONLY: null,
+                NEW_IMAGE: null,
+                OLD_IMAGE: null,
+                NEW_AND_OLD_IMAGES: null,
+            }),
+        }),
+        // TODO: narrow to a DynamoArn
+        eventSourceARN: EventSourceArn,
+    })
+
+type DynamoInsertEvent = ReturnType<typeof DynamoInsertEvent>
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
@@ -85,9 +128,9 @@ export const DynamoInsertEvent = DynamoBaseEvent(t.literal('INSERT'))
  * Note: currently only supports streams configured with `NewImage`.
  * PRs welcome!
  *
- * @since 0.0.3
+ * @since X.X.X
  */
-export const DynamoModifyEvent = DynamoBaseEvent(t.literal('MODIFY'))
+// export const DynamoModifyEvent = DynamoBaseEvent(t.literal('MODIFY'))
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
@@ -98,6 +141,8 @@ export const DynamoModifyEvent = DynamoBaseEvent(t.literal('MODIFY'))
  * @since 0.0.3
  */
 export const DynamoRemoveEvent = DynamoBaseEvent(t.literal('REMOVE'))
+
+type DynamoRemoveEvent = ReturnType<typeof DynamoRemoveEvent>
 
 /**
  * https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/time-to-live-ttl-streams.html
@@ -135,7 +180,6 @@ type DynamoTimeToLiveRemoveEvent = ReturnType<
  */
 export const DynamoUnknownEvent = AnyDynamoEvent({
     keys: t.unknown,
-    newImage: t.unknown,
 })
 
 /**
@@ -143,14 +187,20 @@ export const DynamoUnknownEvent = AnyDynamoEvent({
  */
 export type DynamoUnknownEvent = t.TypeOf<typeof DynamoUnknownEvent>
 
+type StreamEvent =
+    | DynamoInsertEvent
+    | DynamoRemoveEvent
+    | DynamoTimeToLiveRemoveEvent
+    | typeof DynamoUnknownEvent
+
 /**
  * @since 0.0.3
  */
 export const DynamoStreamEvents = <
     // FIXME: looking for a cleaner, more flexible way to type this
-    A extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent,
-    B extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent,
-    C extends DynamoBaseEvent | DynamoTimeToLiveRemoveEvent
+    A extends StreamEvent,
+    B extends StreamEvent,
+    C extends StreamEvent
 >(
     events: readonly [A, B, ...C[]]
     // FIXME: need to preserve static typing on return type
