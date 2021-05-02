@@ -11,7 +11,7 @@ import { SqsFifoQueueName } from './SqsFifoQueueName'
  * @since 0.0.1
  */
 const sqsFifoQueueArnRegex = (): string =>
-    `arn:aws:sqs:${awsRegionRegex()}:${awsAccountIDRegex}:${SqsFifoQueueName}$`
+    `arn:aws:sqs:${awsRegionRegex()}:${awsAccountIDRegex()}:${SqsFifoQueueName}`
 
 /**
  * @since 0.0.1
