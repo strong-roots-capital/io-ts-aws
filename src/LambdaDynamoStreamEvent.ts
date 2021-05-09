@@ -37,7 +37,8 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
         // eventVersion: NumberFromString,
         awsRegion: AwsRegion,
         dynamodb: t.type({
-            ApproximateCreationDateTime: DateFromUnixTime,
+            // Now I see DateFromISOString ? Why do these properties keep changing?
+            // ApproximateCreationDateTime: DateFromUnixTime,
             Keys: keys,
             // FIXME: sometimes this property is a string (INSERT)
             // sometimes number (REMOVE)?  This documentation
