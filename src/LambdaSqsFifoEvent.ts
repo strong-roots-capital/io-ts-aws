@@ -29,6 +29,7 @@ export const LambdaSqsFifoEvent = <C extends t.Mixed>(codec: C) =>
                 attributes: t.type({
                     ApproximateReceiveCount: IntFromString,
                     SentTimestamp: DateFromNumberFromString,
+                    // NOTE: is possible to narrow
                     SenderId: t.string,
                     ApproximateFirstReceiveTimestamp: DateFromNumberFromString,
                     SequenceNumber: IntFromString,
