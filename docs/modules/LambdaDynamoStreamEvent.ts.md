@@ -45,7 +45,6 @@ export declare const AnyDynamoEvent: <K>({
   eventSource: t.LiteralC<'aws:dynamodb'>
   awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
   dynamodb: t.TypeC<{
-    ApproximateCreationDateTime: DateFromUnixTimeC
     Keys: K
     SizeBytes: t.NumberC
     StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
@@ -110,7 +109,6 @@ export declare const DynamoRemoveEvent: <K>({
   eventSource: t.LiteralC<'aws:dynamodb'>
   awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
   dynamodb: t.TypeC<{
-    ApproximateCreationDateTime: DateFromUnixTimeC
     Keys: K
     SizeBytes: t.NumberC
     StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
@@ -153,7 +151,6 @@ export declare const DynamoTimeToLiveRemoveEvent: <K extends t.Mixed>(__0: {
       eventSource: t.LiteralC<'aws:dynamodb'>
       awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
       dynamodb: t.TypeC<{
-        ApproximateCreationDateTime: DateFromUnixTimeC
         Keys: K
         SizeBytes: t.NumberC
         StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
@@ -185,7 +182,6 @@ export declare const DynamoUnknownEvent: t.TypeC<{
   eventSource: t.LiteralC<'aws:dynamodb'>
   awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
   dynamodb: t.TypeC<{
-    ApproximateCreationDateTime: DateFromUnixTimeC
     Keys: t.UnknownC
     SizeBytes: t.NumberC
     StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
