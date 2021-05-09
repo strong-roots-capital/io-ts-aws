@@ -5,13 +5,13 @@
 import * as t from 'io-ts'
 import { awsAccountIDRegex } from './AwsAccountID'
 import { awsRegionRegex } from './AwsRegion'
-import { SqsQueueName } from './SqsQueueName'
+import { sqsQueueNameRegex } from './SqsQueueName'
 
 /**
  * @since 0.0.1
  */
 const sqsQueueArnRegex = (): string =>
-    `arn:aws:sqs:${awsRegionRegex()}:${awsAccountIDRegex()}:${SqsQueueName}`
+    `arn:aws:sqs:${awsRegionRegex()}:${awsAccountIDRegex()}:${sqsQueueNameRegex()}`
 
 /**
  * @since 0.0.1
