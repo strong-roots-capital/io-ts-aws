@@ -77,7 +77,6 @@ export declare const DynamoInsertEvent: <K extends t.Mixed, I extends t.Mixed>({
   eventSource: t.LiteralC<'aws:dynamodb'>
   awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
   dynamodb: t.TypeC<{
-    ApproximateCreationDateTime: DateFromUnixTimeC
     Keys: K
     NewImage: I
     SizeBytes: t.NumberC

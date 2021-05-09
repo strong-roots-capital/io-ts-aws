@@ -4,7 +4,7 @@
 
 import * as t from 'io-ts'
 import { flow } from 'fp-ts/function'
-import { nonEmptyArray, DateFromUnixTime } from 'io-ts-types'
+import { nonEmptyArray } from 'io-ts-types'
 import { AwsRegion } from './AwsRegion'
 import { EventSourceArn } from './EventSourceArn'
 import { DynamoStreamEventID } from './DynamoStreamEventID'
@@ -101,7 +101,8 @@ export const DynamoInsertEvent = <K extends t.Mixed, I extends t.Mixed>({
         // eventVersion: NumberFromString,
         awsRegion: AwsRegion,
         dynamodb: t.type({
-            ApproximateCreationDateTime: DateFromUnixTime,
+            // Now I see DateFromISOString ? Why do these properties keep changing?
+            // ApproximateCreationDateTime: DateFromUnixTime,
             Keys: keys,
             NewImage: newImage,
             // FIXME: sometimes this property is a string (INSERT)
