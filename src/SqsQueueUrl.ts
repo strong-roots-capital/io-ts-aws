@@ -2,6 +2,10 @@
  * @since 0.0.1
  */
 
+// TODO:
+// create SqsStandardQueueUrl, and
+// type SqsQueueUrl = SqsStandardQueueUrl | SqsFifoQueueUrl
+
 import * as t from 'io-ts'
 import { awsRegionRegex, AwsRegion } from './AwsRegion'
 import { awsAccountIDRegex, AwsAccountID } from './AwsAccountID'
