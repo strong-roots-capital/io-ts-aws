@@ -92,3 +92,8 @@ export * from './SqsFifoQueueUrl'
  * @since 0.0.1
  */
 export * from './SqsFifoQueueArn'
+
+/**
+ * @since 0.0.21
+ */
+export * from './encode-sqs'
