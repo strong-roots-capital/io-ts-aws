@@ -1,6 +1,6 @@
 {
     "name": "@strong-roots-capital/io-ts-aws",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "description": "io-ts library for aws-sdk",
     "homepage": "https://github.com/strong-roots-capital/io-ts-aws",
     "bugs": {
