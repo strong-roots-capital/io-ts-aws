@@ -54,6 +54,11 @@ export * from './LambdaSqsFifoEvent'
 export * from './LambdaDynamoStreamEvent'
 
 /**
+ * @since 0.0.22
+ */
+export * from './S3BucketName'
+
+/**
  * @since 0.0.1
  */
 export * from './SnsTopicName'

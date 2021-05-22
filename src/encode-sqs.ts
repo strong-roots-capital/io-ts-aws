@@ -6,6 +6,9 @@ import { SqsQueueArn } from './SqsQueueArn'
 import { SqsQueueName } from './SqsQueueName'
 import { SqsQueueUrl } from './SqsQueueUrl'
 
+// WISH: I'd rather have one function for each input type, but not
+// sure how to expose all those imports w the top-level export
+
 /**
  * @since 0.0.21
  */
