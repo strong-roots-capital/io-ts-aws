@@ -1,12 +1,17 @@
 /**
  * @since 0.0.1
  */
-export * from './AwsRegion'
+export * from './AwsAccountID'
+
+/**
+ * @since 0.0.23
+ */
+export * from './AwsEndpoint'
 
 /**
  * @since 0.0.1
  */
-export * from './AwsAccountID'
+export * from './AwsRegion'
 
 /**
  * @since 0.0.5
