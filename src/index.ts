@@ -19,6 +19,11 @@ export * from './AwsRegion'
 export * from './DynamoStreamEventID'
 
 /**
+ * @since 0.0.24
+ */
+export * from './DynamoTableName'
+
+/**
  * @since 0.0.8
  */
 export * from './EventBridgeEvent'
