@@ -30,11 +30,7 @@
         "lint-staged": "lint-staged",
         "prettier:check": "prettier --list-different src/**/*.ts",
         "prettier:fix": "prettier --write src/**/*.ts",
-        "test": "npm run lint && npm run prettier:check && nyc ava && npm run docs",
-        "watch:ava": "nodemon -e 'ts json' -x 'npm run ava -- -s -v --fail-fast || true'",
-        "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
-        "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
-        "watch:test": "nodemon -e 'ts json' -x 'npm test || true'"
+        "test": "npm run lint && npm run prettier:check && nyc ava && npm run docs"
     },
     "pre-commit": "lint-staged",
     "lint-staged": {
