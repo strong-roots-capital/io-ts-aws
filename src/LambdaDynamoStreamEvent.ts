@@ -25,8 +25,8 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
 }: {
     keys: K
 }) =>
-    // Note to the maintainers: see desired format here, we are not
-    // quite there yet https://stackoverflow.com/a/63840612
+    // Note to maintainers: see desired format here, we are not quite
+    // there yet https://stackoverflow.com/a/63840612
     t.type({
         eventID: DynamoStreamEventID,
         eventName: eventName,
