@@ -8,6 +8,7 @@
  */
 
 import * as t from 'io-ts'
+
 import { AwsAccountID, awsAccountIDRegex } from './AwsAccountID'
 import { AwsRegion, awsRegionRegex } from './AwsRegion'
 import {

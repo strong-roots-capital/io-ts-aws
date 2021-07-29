@@ -4,6 +4,7 @@
 
 import * as t from 'io-ts'
 import { nonEmptyArray, DateFromISOString, IntFromString } from 'io-ts-types'
+
 import { SnsTopicArn } from './SnsTopicArn'
 
 // const SnsMessageAttributes = t.record(

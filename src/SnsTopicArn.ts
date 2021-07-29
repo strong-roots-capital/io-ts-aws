@@ -3,9 +3,10 @@
  */
 
 import * as t from 'io-ts'
-import { snsTopicNameRegex, SnsTopicName } from './SnsTopicName'
+
 import { AwsAccountID } from './AwsAccountID'
 import { AwsRegion } from './AwsRegion'
+import { snsTopicNameRegex, SnsTopicName } from './SnsTopicName'
 
 /**
  * @since 0.0.1

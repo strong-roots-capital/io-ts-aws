@@ -7,8 +7,9 @@
 // type SqsQueueUrl = SqsStandardQueueUrl | SqsFifoQueueUrl
 
 import * as t from 'io-ts'
-import { awsRegionRegex, AwsRegion } from './AwsRegion'
+
 import { awsAccountIDRegex, AwsAccountID } from './AwsAccountID'
+import { awsRegionRegex, AwsRegion } from './AwsRegion'
 import { sqsQueueNameRegex, SqsQueueName } from './SqsQueueName'
 
 const sqsQueueUrlRegex = (): string =>

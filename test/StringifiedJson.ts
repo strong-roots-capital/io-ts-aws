@@ -1,7 +1,7 @@
-import * as t from 'io-ts'
 import * as E from 'fp-ts/Either'
 import * as Json from 'fp-ts/Json'
 import { pipe, constFalse, constant } from 'fp-ts/function'
+import * as t from 'io-ts'
 
 // TODO: TEST
 // TODO: pull this into io-ts-types (and rename to StringifiedJson)

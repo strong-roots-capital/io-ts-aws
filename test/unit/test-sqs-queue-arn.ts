@@ -1,7 +1,7 @@
 import test from 'ava'
 import * as E from 'fp-ts/Either'
-import * as PathReporter from 'io-ts/lib/PathReporter'
 import { pipe, flow } from 'fp-ts/function'
+import * as PathReporter from 'io-ts/lib/PathReporter'
 
 /**
  * Unit under test

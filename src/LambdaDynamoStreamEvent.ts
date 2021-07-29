@@ -2,12 +2,13 @@
  * @since 0.0.1
  */
 
-import * as t from 'io-ts'
 import { flow } from 'fp-ts/function'
+import * as t from 'io-ts'
 import { nonEmptyArray } from 'io-ts-types'
+
 import { AwsRegion } from './AwsRegion'
-import { EventSourceArn } from './EventSourceArn'
 import { DynamoStreamEventID } from './DynamoStreamEventID'
+import { EventSourceArn } from './EventSourceArn'
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html

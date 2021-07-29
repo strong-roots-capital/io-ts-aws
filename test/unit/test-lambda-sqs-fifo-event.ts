@@ -1,14 +1,15 @@
 import test from 'ava'
-import * as iots from 'io-ts'
 import * as E from 'fp-ts/Either'
-import * as PathReporter from 'io-ts/lib/PathReporter'
 import { pipe, flow } from 'fp-ts/function'
+import * as iots from 'io-ts'
+import * as PathReporter from 'io-ts/lib/PathReporter'
+
+import { LambdaSqsFifoEvent } from '../../src/LambdaSqsFifoEvent'
 import { StringifiedJson } from '../StringifiedJson'
 
 /**
  * Unit under test
  */
-import { LambdaSqsFifoEvent } from '../../src/LambdaSqsFifoEvent'
 
 const event = {
     Records: [

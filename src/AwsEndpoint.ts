@@ -3,6 +3,7 @@
  */
 
 import * as t from 'io-ts'
+
 import { awsRegionRegex } from './AwsRegion'
 
 /**

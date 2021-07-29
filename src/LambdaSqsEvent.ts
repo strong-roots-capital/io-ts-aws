@@ -9,8 +9,9 @@ import {
     DateFromNumber,
     IntFromString,
 } from 'io-ts-types'
-import { SqsQueueArn } from './SqsQueueArn'
+
 import { AwsRegion } from './AwsRegion'
+import { SqsQueueArn } from './SqsQueueArn'
 
 const DateFromNumberFromString = NumberFromString.pipe(DateFromNumber)
 

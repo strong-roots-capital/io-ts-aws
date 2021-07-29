@@ -3,8 +3,9 @@
  */
 
 import * as t from 'io-ts'
-import { awsRegionRegex, AwsRegion } from './AwsRegion'
+
 import { awsAccountIDRegex, AwsAccountID } from './AwsAccountID'
+import { awsRegionRegex, AwsRegion } from './AwsRegion'
 import { sqsFifoQueueNameRegex, SqsFifoQueueName } from './SqsFifoQueueName'
 
 const sqsFifoQueueUrlRegex = (): string =>
