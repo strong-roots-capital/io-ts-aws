@@ -1,6 +1,6 @@
 {
   "name": "@strong-roots-capital/io-ts-aws",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "io-ts library for aws-sdk",
   "keywords": [
     "io-ts",
