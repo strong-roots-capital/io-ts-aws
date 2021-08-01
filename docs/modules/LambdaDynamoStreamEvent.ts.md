@@ -65,14 +65,17 @@ PRs welcome!
 **Signature**
 
 ```ts
-export declare const DynamoInsertEvent: <I extends t.Mixed>(
+export declare const DynamoInsertEvent: <I extends t.Mixed>({
+  newImage,
+}: {
   newImage: I
-) => t.TypeC<{
+}) => t.TypeC<{
   eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
   eventName: t.LiteralC<'INSERT'>
   eventSource: t.LiteralC<'aws:dynamodb'>
   awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
   dynamodb: t.TypeC<{
+    Keys: t.UnknownRecordC
     NewImage: I
     SizeBytes: t.NumberC
     StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>

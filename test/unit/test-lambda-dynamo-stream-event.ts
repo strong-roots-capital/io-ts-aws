@@ -75,8 +75,7 @@ const codec = iots.type({
 
 test('should decode a real-world event', (t) => {
   pipe(
-    // RESUME: unmarshall before decoding
-    DynamoInsertEvent(codec).decode(event),
+    DynamoInsertEvent({ newImage: codec }).decode(event),
     E.bimap(
       flow(
         (errors) => PathReporter.failure(errors).join('\n'),
