@@ -108,6 +108,8 @@ export const DynamoInsertEvent = <I extends t.Mixed>(newImage: I) => {
     dynamodb: t.type({
       // Now I see DateFromISOString ? Why do these properties keep changing?
       // ApproximateCreationDateTime: DateFromUnixTime,
+      // NOTE: NewImage includes Keys
+      Keys: t.UnknownRecord,
       NewImage: newImage,
       // FIXME: sometimes this property is a string (INSERT)
       // sometimes number (REMOVE)?  This documentation
