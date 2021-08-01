@@ -4,10 +4,10 @@
 
 import * as t from 'io-ts'
 import {
-    nonEmptyArray,
-    NumberFromString,
-    DateFromNumber,
-    IntFromString,
+  nonEmptyArray,
+  NumberFromString,
+  DateFromNumber,
+  IntFromString,
 } from 'io-ts-types'
 
 import { AwsRegion } from './AwsRegion'
@@ -20,25 +20,25 @@ const DateFromNumberFromString = NumberFromString.pipe(DateFromNumber)
  * @since 0.0.1
  */
 export const LambdaSqsEvent = <C extends t.Mixed>(codec: C) =>
-    t.type({
-        // DISCUSS: can we use a readonly nonempty array here?
-        Records: nonEmptyArray(
-            t.type({
-                messageId: t.string,
-                receiptHandle: t.string,
-                body: codec,
-                attributes: t.type({
-                    ApproximateReceiveCount: IntFromString,
-                    SentTimestamp: DateFromNumberFromString,
-                    // NOTE: is possible to narrow
-                    SenderId: t.string,
-                    ApproximateFirstReceiveTimestamp: DateFromNumberFromString,
-                }),
-                messageAttributes: t.UnknownRecord,
-                md5OfBody: t.string,
-                eventSource: t.literal('aws:sqs'),
-                eventSourceARN: SqsQueueArn,
-                awsRegion: AwsRegion,
-            })
-        ),
-    })
+  t.type({
+    // DISCUSS: can we use a readonly nonempty array here?
+    Records: nonEmptyArray(
+      t.type({
+        messageId: t.string,
+        receiptHandle: t.string,
+        body: codec,
+        attributes: t.type({
+          ApproximateReceiveCount: IntFromString,
+          SentTimestamp: DateFromNumberFromString,
+          // NOTE: is possible to narrow
+          SenderId: t.string,
+          ApproximateFirstReceiveTimestamp: DateFromNumberFromString,
+        }),
+        messageAttributes: t.UnknownRecord,
+        md5OfBody: t.string,
+        eventSource: t.literal('aws:sqs'),
+        eventSourceARN: SqsQueueArn,
+        awsRegion: AwsRegion,
+      })
+    ),
+  })

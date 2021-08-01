@@ -20,23 +20,23 @@ import * as t from 'io-ts'
  * @since 0.0.1
  */
 export const sqsFifoQueueNameRegex = (): string =>
-    '[-a-zA-Z0-9_]{1,75}(?:.fifo)'
+  '[-a-zA-Z0-9_]{1,75}(?:.fifo)'
 
 /**
  * @since 0.0.1
  */
 export interface SqsFifoQueueNameBrand {
-    readonly SqsFifoQueueName: unique symbol
+  readonly SqsFifoQueueName: unique symbol
 }
 
 /**
  * @since 0.0.1
  */
 export const SqsFifoQueueName = t.brand(
-    t.string,
-    (s): s is t.Branded<string, SqsFifoQueueNameBrand> =>
-        RegExp('^' + sqsFifoQueueNameRegex() + '$').test(s),
-    'SqsFifoQueueName'
+  t.string,
+  (s): s is t.Branded<string, SqsFifoQueueNameBrand> =>
+    RegExp('^' + sqsFifoQueueNameRegex() + '$').test(s),
+  'SqsFifoQueueName'
 )
 
 /**

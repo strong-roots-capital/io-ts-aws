@@ -42,17 +42,17 @@ export const s3BucketNameRegex = (): string => '[-a-z0-9.]{3,63}'
  * @since 0.0.22
  */
 export interface S3BucketNameBrand {
-    readonly S3BucketName: unique symbol
+  readonly S3BucketName: unique symbol
 }
 
 /**
  * @since 0.0.22
  */
 export const S3BucketName = t.brand(
-    t.string,
-    (s): s is t.Branded<string, S3BucketNameBrand> =>
-        RegExp('^' + s3BucketNameRegex() + '$').test(s),
-    'S3BucketName'
+  t.string,
+  (s): s is t.Branded<string, S3BucketNameBrand> =>
+    RegExp('^' + s3BucketNameRegex() + '$').test(s),
+  'S3BucketName'
 )
 
 /**

@@ -39,17 +39,17 @@ export const dynamoTableNameRegex = (): string => '[-_.a-zA-Z0-9]{3,255}'
  * @since 0.0.24
  */
 export interface DynamoTableNameBrand {
-    readonly DynamoTableName: unique symbol
+  readonly DynamoTableName: unique symbol
 }
 
 /**
  * @since 0.0.24
  */
 export const DynamoTableName = t.brand(
-    t.string,
-    (s): s is t.Branded<string, DynamoTableNameBrand> =>
-        RegExp('^' + dynamoTableNameRegex() + '$').test(s),
-    'DynamoTableName'
+  t.string,
+  (s): s is t.Branded<string, DynamoTableNameBrand> =>
+    RegExp('^' + dynamoTableNameRegex() + '$').test(s),
+  'DynamoTableName'
 )
 
 /**

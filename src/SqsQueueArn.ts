@@ -12,23 +12,23 @@ import { sqsQueueNameRegex } from './SqsQueueName'
  * @since 0.0.1
  */
 const sqsQueueArnRegex = (): string =>
-    `arn:aws:sqs:${awsRegionRegex()}:${awsAccountIDRegex()}:${sqsQueueNameRegex()}`
+  `arn:aws:sqs:${awsRegionRegex()}:${awsAccountIDRegex()}:${sqsQueueNameRegex()}`
 
 /**
  * @since 0.0.1
  */
 export interface SqsQueueArnBrand {
-    readonly SqsQueueArn: unique symbol
+  readonly SqsQueueArn: unique symbol
 }
 
 /**
  * @since 0.0.1
  */
 export const SqsQueueArn = t.brand(
-    t.string,
-    (s): s is t.Branded<string, SqsQueueArnBrand> =>
-        RegExp('^' + sqsQueueArnRegex() + '$').test(s),
-    'SqsQueueArn'
+  t.string,
+  (s): s is t.Branded<string, SqsQueueArnBrand> =>
+    RegExp('^' + sqsQueueArnRegex() + '$').test(s),
+  'SqsQueueArn'
 )
 
 /**

@@ -26,17 +26,17 @@ export const lambdaFunctionNameRegex = (): string => '[-a-zA-Z0-9_]{1,80}'
  * @since 0.0.9
  */
 export interface LambdaFunctionNameBrand {
-    readonly LambdaFunctionName: unique symbol
+  readonly LambdaFunctionName: unique symbol
 }
 
 /**
  * @since 0.0.9
  */
 export const LambdaFunctionName = t.brand(
-    t.string,
-    (s): s is t.Branded<string, LambdaFunctionNameBrand> =>
-        RegExp('^' + lambdaFunctionNameRegex() + '$').test(s),
-    'LambdaFunctionName'
+  t.string,
+  (s): s is t.Branded<string, LambdaFunctionNameBrand> =>
+    RegExp('^' + lambdaFunctionNameRegex() + '$').test(s),
+  'LambdaFunctionName'
 )
 
 /**

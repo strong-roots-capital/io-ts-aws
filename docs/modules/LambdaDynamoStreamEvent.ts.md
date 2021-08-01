@@ -65,19 +65,14 @@ PRs welcome!
 **Signature**
 
 ```ts
-export declare const DynamoInsertEvent: <K extends t.Mixed, I extends t.Mixed>({
-  keys,
-  newImage,
-}: {
-  keys: K
+export declare const DynamoInsertEvent: <I extends t.Mixed>(
   newImage: I
-}) => t.TypeC<{
+) => t.TypeC<{
   eventID: t.BrandC<t.StringC, DynamoStreamEventIDBrand>
   eventName: t.LiteralC<'INSERT'>
   eventSource: t.LiteralC<'aws:dynamodb'>
   awsRegion: t.BrandC<t.StringC, AwsRegionBrand>
   dynamodb: t.TypeC<{
-    Keys: K
     NewImage: I
     SizeBytes: t.NumberC
     StreamViewType: t.KeyofC<{ KEYS_ONLY: any; NEW_IMAGE: any; OLD_IMAGE: any; NEW_AND_OLD_IMAGES: any }>
@@ -123,9 +118,9 @@ Added in v0.0.3
 **Signature**
 
 ```ts
-export declare const DynamoStreamEvents: <A extends StreamEvent, B extends StreamEvent, C extends StreamEvent>(
-  events: readonly [A, B, ...C[]]
-) => t.TypeC<{ Records: NonEmptyArrayC<t.UnionC<[A, B, ...C[]]>> }>
+export declare const DynamoStreamEvents: <A extends StreamEvent, B extends StreamEvent, C extends StreamEvent[]>(
+  events: readonly [A, B, ...any[]]
+) => t.TypeC<{ Records: NonEmptyArrayC<t.UnionC<[A, B, ...any[]]>> }>
 ```
 
 Added in v0.0.3

@@ -12,29 +12,29 @@ import { AwsRegion } from './AwsRegion'
 // need to be defined. Find a pattern that allows us to arbitrarily
 // narrow the type of our defined EventBridgeEvent
 type EventBridgeEventType = t.TypeC<{
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    detail: any
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    'detail-type': any
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    source: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  detail: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  'detail-type': any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  source: any
 }>
 
 /**
  * @since 0.0.8
  */
 export const EventBridgeEvent = <C extends EventBridgeEventType>(codec: C) =>
-    t.intersection([
-        t.type({
-            version: IntFromString,
-            id: UUID,
-            time: DateFromISOString,
-            account: AwsAccountID,
-            region: AwsRegion,
-            // 'detail-type': t.string,
-            // detail: t.UnknownRecord,
-            // source: t.string,
-            resources: t.array(t.string),
-        }),
-        codec,
-    ])
+  t.intersection([
+    t.type({
+      version: IntFromString,
+      id: UUID,
+      time: DateFromISOString,
+      account: AwsAccountID,
+      region: AwsRegion,
+      // 'detail-type': t.string,
+      // detail: t.UnknownRecord,
+      // source: t.string,
+      resources: t.array(t.string),
+    }),
+    codec,
+  ])

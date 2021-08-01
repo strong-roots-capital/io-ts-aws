@@ -22,17 +22,17 @@ export const sqsQueueNameRegex = (): string => '[-a-zA-Z0-9_]{1,80}'
  * @since 0.0.1
  */
 export interface SqsQueueNameBrand {
-    readonly SqsQueueName: unique symbol
+  readonly SqsQueueName: unique symbol
 }
 
 /**
  * @since 0.0.1
  */
 export const SqsQueueName = t.brand(
-    t.string,
-    (s): s is t.Branded<string, SqsQueueNameBrand> =>
-        RegExp('^' + sqsQueueNameRegex() + '$').test(s),
-    'SqsQueueName'
+  t.string,
+  (s): s is t.Branded<string, SqsQueueNameBrand> =>
+    RegExp('^' + sqsQueueNameRegex() + '$').test(s),
+  'SqsQueueName'
 )
 
 /**

@@ -13,17 +13,17 @@ export const awsAccountIDRegex = (): string => '[0-9]{12}'
  * @since 0.0.1
  */
 export interface AwsAccountIDBrand {
-    readonly AwsAccountID: unique symbol
+  readonly AwsAccountID: unique symbol
 }
 
 /**
  * @since 0.0.1
  */
 export const AwsAccountID = t.brand(
-    t.string,
-    (s): s is t.Branded<string, AwsAccountIDBrand> =>
-        RegExp('^' + awsAccountIDRegex() + '$').test(s),
-    'AwsAccountID'
+  t.string,
+  (s): s is t.Branded<string, AwsAccountIDBrand> =>
+    RegExp('^' + awsAccountIDRegex() + '$').test(s),
+  'AwsAccountID'
 )
 
 /**

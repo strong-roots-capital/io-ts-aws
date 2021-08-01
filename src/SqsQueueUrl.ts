@@ -13,23 +13,23 @@ import { awsRegionRegex, AwsRegion } from './AwsRegion'
 import { sqsQueueNameRegex, SqsQueueName } from './SqsQueueName'
 
 const sqsQueueUrlRegex = (): string =>
-    `https://sqs.${awsRegionRegex()}.amazonaws.com/${awsAccountIDRegex()}/${sqsQueueNameRegex()}`
+  `https://sqs.${awsRegionRegex()}.amazonaws.com/${awsAccountIDRegex()}/${sqsQueueNameRegex()}`
 
 /**
  * @since 0.0.1
  */
 export interface SqsQueueUrlBrand {
-    readonly SqsQueueUrl: unique symbol
+  readonly SqsQueueUrl: unique symbol
 }
 
 /**
  * @since 0.0.1
  */
 export const SqsQueueUrl = t.brand(
-    t.string,
-    (s): s is t.Branded<string, SqsQueueUrlBrand> =>
-        RegExp('^' + sqsQueueUrlRegex() + '$').test(s),
-    'SqsQueueUrl'
+  t.string,
+  (s): s is t.Branded<string, SqsQueueUrlBrand> =>
+    RegExp('^' + sqsQueueUrlRegex() + '$').test(s),
+  'SqsQueueUrl'
 )
 
 /**
@@ -41,7 +41,7 @@ export type SqsQueueUrl = t.TypeOf<typeof SqsQueueUrl>
  * @since 0.0.1
  */
 export const sqsQueueUrl = (parameters: {
-    account: AwsAccountID
-    region: AwsRegion
+  account: AwsAccountID
+  region: AwsRegion
 }) => (queueName: SqsQueueName): SqsQueueUrl =>
-    `https://sqs.${parameters.region}.amazonaws.com/${parameters.account}/${queueName}` as SqsQueueUrl
+  `https://sqs.${parameters.region}.amazonaws.com/${parameters.account}/${queueName}` as SqsQueueUrl
