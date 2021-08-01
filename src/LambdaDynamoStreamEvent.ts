@@ -29,10 +29,16 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
   keys,
 }: {
   keys: K
-}) =>
+}) => {
+  const RawEventCodec = t.type({
+    dynamodb: t.type({
+      Keys: t.UnknownRecord,
+    }),
+  })
+
   // Note to maintainers: see desired format here, we are not quite
   // there yet https://stackoverflow.com/a/63840612
-  t.type({
+  const UnmarshalledEventCodec = t.type({
     eventID: DynamoStreamEventID,
     eventName: eventName,
     eventSource: t.literal('aws:dynamodb'),
@@ -62,6 +68,28 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
     // TODO: narrow to a DynamoArn
     eventSourceARN: EventSourceArn,
   })
+
+  const keysLens = Lens.fromPath<t.TypeOf<typeof RawEventCodec>>()([
+    'dynamodb',
+    'Keys',
+  ])
+
+  return withValidate(UnmarshalledEventCodec, (u, c) =>
+    pipe(
+      RawEventCodec.validate(u, c),
+      E.chain((rawEvent) =>
+        UnmarshalledEventCodec.validate(
+          keysLens.modify(() =>
+            // FIXME: avoid type assertion
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            unmarshall(rawEvent.dynamodb.Keys as any),
+          )(rawEvent),
+          c,
+        ),
+      ),
+    ),
+  )
+}
 
 /**
  * https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
@@ -131,23 +159,25 @@ export const DynamoInsertEvent = <I extends t.Mixed>({
     // TODO: narrow to a DynamoArn
     eventSourceARN: EventSourceArn,
   })
+
+  const newImageLens = Lens.fromPath<t.TypeOf<typeof RawEventCodec>>()([
+    'dynamodb',
+    'NewImage',
+  ])
+
   return withValidate(UnmarshalledEventCodec, (u, c) =>
     pipe(
       RawEventCodec.validate(u, c),
-      E.chain((rawEvent) => {
-        const newImageLens = Lens.fromPath<t.TypeOf<typeof RawEventCodec>>()([
-          'dynamodb',
-          'NewImage',
-        ])
-        return UnmarshalledEventCodec.validate(
+      E.chain((rawEvent) =>
+        UnmarshalledEventCodec.validate(
           newImageLens.modify(() =>
             // FIXME: avoid type assertion
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             unmarshall(rawEvent.dynamodb.NewImage as any),
           )(rawEvent),
           c,
-        )
-      }),
+        ),
+      ),
     ),
   )
 }
