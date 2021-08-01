@@ -76,7 +76,7 @@ export const AnyDynamoEvent = DynamoBaseEvent(
     INSERT: null,
     MODIFY: null,
     REMOVE: null,
-  })
+  }),
 )
 
 /**
@@ -134,7 +134,7 @@ export const DynamoInsertEvent = <I extends t.Mixed>({
   return withValidate(UnmarshalledEventCodec, (u, c) =>
     pipe(
       RawEventCodec.validate(u, c),
-      E.chain(rawEvent => {
+      E.chain((rawEvent) => {
         const newImageLens = Lens.fromPath<t.TypeOf<typeof RawEventCodec>>()([
           'dynamodb',
           'NewImage',
@@ -143,12 +143,12 @@ export const DynamoInsertEvent = <I extends t.Mixed>({
           newImageLens.modify(() =>
             // FIXME: avoid type assertion
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            unmarshall(rawEvent.dynamodb.NewImage as any)
+            unmarshall(rawEvent.dynamodb.NewImage as any),
           )(rawEvent),
-          c
+          c,
         )
-      })
-    )
+      }),
+    ),
   )
 }
 
@@ -186,7 +186,7 @@ type DynamoRemoveEvent = ReturnType<typeof DynamoRemoveEvent>
  */
 export const DynamoTimeToLiveRemoveEvent = flow(
   DynamoBaseEvent(t.literal('REMOVE')),
-  removeEventCodec =>
+  (removeEventCodec) =>
     t.intersection([
       removeEventCodec,
       t.type({
@@ -195,7 +195,7 @@ export const DynamoTimeToLiveRemoveEvent = flow(
           principalId: t.literal('dynamodb.amazonaws.com'),
         }),
       }),
-    ])
+    ]),
 )
 
 type DynamoTimeToLiveRemoveEvent = ReturnType<
@@ -234,7 +234,7 @@ export const DynamoStreamEvents = <
   B extends StreamEvent,
   C extends StreamEvent[]
 >(
-  events: readonly [A, B, ...C]
+  events: readonly [A, B, ...C],
   // FIXME: need to preserve static typing on return type
 ) =>
   t.type({

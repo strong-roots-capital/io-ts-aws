@@ -37,6 +37,6 @@ export const LambdaSnsEvent = <C extends t.Mixed>(codec: C) =>
           // MessageAttributes: SnsMessageAttributes,
           UnsubscribeUrl: t.string,
         }),
-      })
+      }),
     ),
   })

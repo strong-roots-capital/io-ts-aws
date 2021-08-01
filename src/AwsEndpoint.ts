@@ -26,7 +26,7 @@ export const AwsEndpoint = t.brand(
   t.string,
   (s): s is t.Branded<string, AwsEndpointBrand> =>
     RegExp('^' + awsEndpointRegex() + '$').test(s),
-  'AwsEndpoint'
+  'AwsEndpoint',
 )
 
 /**

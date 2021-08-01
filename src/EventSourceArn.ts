@@ -24,7 +24,7 @@ export const EventSourceArn = t.brand(
   t.string,
   (s): s is t.Branded<string, EventSourceArnBrand> =>
     RegExp('^' + eventSourceArnRegex() + '$').test(s),
-  'EventSourceArn'
+  'EventSourceArn',
 )
 
 /**

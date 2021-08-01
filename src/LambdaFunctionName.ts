@@ -36,7 +36,7 @@ export const LambdaFunctionName = t.brand(
   t.string,
   (s): s is t.Branded<string, LambdaFunctionNameBrand> =>
     RegExp('^' + lambdaFunctionNameRegex() + '$').test(s),
-  'LambdaFunctionName'
+  'LambdaFunctionName',
 )
 
 /**

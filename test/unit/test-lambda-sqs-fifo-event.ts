@@ -36,15 +36,15 @@ const event = {
   ],
 } as const
 
-test('should decode a real-world event', t => {
+test('should decode a real-world event', (t) => {
   pipe(
     LambdaSqsFifoEvent(iots.string.pipe(JsonFromString)).decode(event),
     E.bimap(
       flow(
-        errors => PathReporter.failure(errors).join('\n'),
-        error => t.fail(error)
+        (errors) => PathReporter.failure(errors).join('\n'),
+        (error) => t.fail(error),
       ),
-      () => t.pass()
-    )
+      () => t.pass(),
+    ),
   )
 })

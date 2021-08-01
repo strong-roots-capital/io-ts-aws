@@ -49,7 +49,7 @@ export const DynamoTableName = t.brand(
   t.string,
   (s): s is t.Branded<string, DynamoTableNameBrand> =>
     RegExp('^' + dynamoTableNameRegex() + '$').test(s),
-  'DynamoTableName'
+  'DynamoTableName',
 )
 
 /**

@@ -2,6 +2,10 @@
   "name": "@strong-roots-capital/io-ts-aws",
   "version": "0.0.25",
   "description": "io-ts library for aws-sdk",
+  "keywords": [
+    "io-ts",
+    "aws-sdk"
+  ],
   "homepage": "https://github.com/strong-roots-capital/io-ts-aws",
   "bugs": {
     "url": "https://github.com/strong-roots-capital/io-ts-aws/issues"
@@ -12,9 +16,9 @@
   },
   "license": "ISC",
   "author": "Eric Crosson <eric.s.crosson@utexas.edu> (https://github.com/EricCrosson)",
+  "sideEffects": false,
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
-  "sideEffects": false,
   "files": [
     "dist/src/"
   ],
@@ -28,24 +32,9 @@
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
     "lint-staged": "lint-staged",
-    "prettier:check": "prettier --list-different src/**/*.ts test/**/*.ts",
+    "prettier": "prettier --list-different src/**/*.ts test/**/*.ts",
     "prettier:fix": "prettier --write src/**/*.ts test/**/*.ts",
-    "test": "npm run lint && npm run prettier:check && nyc ava && npm run docs"
-  },
-  "pre-commit": "lint-staged",
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "peerDependencies": {
-    "@aws-sdk/client-dynamodb": ">= 3.0.0",
-    "@aws-sdk/util-dynamodb": ">= 3.0.0",
-    "io-ts": "~2.1.3",
-    "io-ts-types": ">= 0.5.0",
-    "monocle-ts": ">= 2.3.0",
-    "newtype-ts": ">= 0.3.0"
+    "test": "npm run prettier && npm run lint && nyc ava && npm run docs"
   },
   "devDependencies": {
     "@ericcrosson/eslint-config": "^2.0.1",
@@ -74,6 +63,15 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
+  "peerDependencies": {
+    "@aws-sdk/client-dynamodb": ">= 3.0.0",
+    "@aws-sdk/util-dynamodb": ">= 3.0.0",
+    "io-ts": "~2.1.3",
+    "io-ts-types": ">= 0.5.0",
+    "monocle-ts": ">= 2.3.0",
+    "newtype-ts": ">= 0.3.0"
+  },
+  "pre-commit": "lint-staged",
   "ava": {
     "extensions": [
       "ts"
@@ -97,10 +95,6 @@
       "ts-node/register"
     ]
   },
-  "keywords": [
-    "io-ts",
-    "aws-sdk"
-  ],
   "publishConfig": {
     "access": "public"
   }

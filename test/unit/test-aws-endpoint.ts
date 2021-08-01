@@ -7,7 +7,7 @@ import { AwsEndpoint } from '../../src/AwsEndpoint'
 
 const shouldRecognizeAwsEndpoint = (
   t: ExecutionContext,
-  region: string
+  region: string,
 ): void => t.true(AwsEndpoint.is(region))
 
 shouldRecognizeAwsEndpoint.title = (_ = '', region: string) =>
@@ -221,23 +221,23 @@ const principals = [
   'xray.amazonaws.com',
 ]
 
-regions.forEach(region =>
-  principals.forEach(principal => {
+regions.forEach((region) =>
+  principals.forEach((principal) => {
     test(
       shouldRecognizeAwsEndpoint,
-      `http://${principal}.${region}.amazonaws.com`
+      `http://${principal}.${region}.amazonaws.com`,
     )
     test(
       shouldRecognizeAwsEndpoint,
-      `https://${principal}.${region}.amazonaws.com`
+      `https://${principal}.${region}.amazonaws.com`,
     )
     test(
       shouldRecognizeAwsEndpoint,
-      `http://${principal}.${region}.amazonaws.com/`
+      `http://${principal}.${region}.amazonaws.com/`,
     )
     test(
       shouldRecognizeAwsEndpoint,
-      `https://${principal}.${region}.amazonaws.com/`
+      `https://${principal}.${region}.amazonaws.com/`,
     )
-  })
+  }),
 )

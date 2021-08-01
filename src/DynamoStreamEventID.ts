@@ -17,7 +17,7 @@ export interface DynamoStreamEventIDBrand {
 export const DynamoStreamEventID = t.brand(
   t.string,
   (_): _ is t.Branded<string, DynamoStreamEventIDBrand> => true,
-  'DynamoStreamEventID'
+  'DynamoStreamEventID',
 )
 
 /**

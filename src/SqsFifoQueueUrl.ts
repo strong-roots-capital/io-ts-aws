@@ -25,7 +25,7 @@ export const SqsFifoQueueUrl = t.brand(
   t.string,
   (s): s is t.Branded<string, SqsFifoQueueUrlBrand> =>
     RegExp('^' + sqsFifoQueueUrlRegex() + '$').test(s),
-  'SqsFifoQueueUrl'
+  'SqsFifoQueueUrl',
 )
 
 /**

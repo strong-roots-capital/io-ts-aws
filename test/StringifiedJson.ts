@@ -18,13 +18,13 @@ export const StringifiedJson = <C extends t.Mixed>(codec: C) =>
     (u, c) =>
       pipe(
         t.string.validate(u, c),
-        E.chain(s =>
+        E.chain((s) =>
           pipe(
             E.parseJSON(s, E.toError),
-            E.fold(constant(t.failure(u, c)), codec.decode.bind(null))
-          )
-        )
+            E.fold(constant(t.failure(u, c)), codec.decode.bind(null)),
+          ),
+        ),
       ),
     // DISCUSS: should this not be to re-stringify?
-    codec.encode
+    codec.encode,
   )

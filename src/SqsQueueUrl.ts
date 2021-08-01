@@ -29,7 +29,7 @@ export const SqsQueueUrl = t.brand(
   t.string,
   (s): s is t.Branded<string, SqsQueueUrlBrand> =>
     RegExp('^' + sqsQueueUrlRegex() + '$').test(s),
-  'SqsQueueUrl'
+  'SqsQueueUrl',
 )
 
 /**

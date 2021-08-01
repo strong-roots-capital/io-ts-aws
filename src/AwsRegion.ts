@@ -23,7 +23,7 @@ export const AwsRegion = t.brand(
   t.string,
   (s): s is t.Branded<string, AwsRegionBrand> =>
     RegExp('^' + awsRegionRegex() + '$').test(s),
-  'AwsRegion'
+  'AwsRegion',
 )
 
 /**

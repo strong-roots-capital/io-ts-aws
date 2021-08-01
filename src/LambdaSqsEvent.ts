@@ -39,6 +39,6 @@ export const LambdaSqsEvent = <C extends t.Mixed>(codec: C) =>
         eventSource: t.literal('aws:sqs'),
         eventSourceARN: SqsQueueArn,
         awsRegion: AwsRegion,
-      })
+      }),
     ),
   })

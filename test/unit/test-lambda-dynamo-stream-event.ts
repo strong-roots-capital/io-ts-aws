@@ -73,16 +73,16 @@ const codec = iots.type({
   boolean: iots.boolean,
 })
 
-test('should decode a real-world event', t => {
+test('should decode a real-world event', (t) => {
   pipe(
     // RESUME: unmarshall before decoding
     DynamoInsertEvent(codec).decode(event),
     E.bimap(
       flow(
-        errors => PathReporter.failure(errors).join('\n'),
-        errors => t.fail(errors)
+        (errors) => PathReporter.failure(errors).join('\n'),
+        (errors) => t.fail(errors),
       ),
-      decoded => {
+      (decoded) => {
         /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment */
         t.deepEqual(decoded, {
           ...event,
@@ -92,7 +92,7 @@ test('should decode a real-world event', t => {
           } as any,
         } as any)
         /* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment */
-      }
-    )
+      },
+    ),
   )
 })

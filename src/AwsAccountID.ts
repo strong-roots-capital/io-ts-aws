@@ -23,7 +23,7 @@ export const AwsAccountID = t.brand(
   t.string,
   (s): s is t.Branded<string, AwsAccountIDBrand> =>
     RegExp('^' + awsAccountIDRegex() + '$').test(s),
-  'AwsAccountID'
+  'AwsAccountID',
 )
 
 /**

@@ -42,6 +42,6 @@ export const LambdaSqsFifoEvent = <C extends t.Mixed>(codec: C) =>
         eventSource: t.literal('aws:sqs'),
         eventSourceARN: SqsFifoQueueArn,
         awsRegion: AwsRegion,
-      })
+      }),
     ),
   })

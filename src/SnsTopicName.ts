@@ -23,7 +23,7 @@ export const SnsTopicName = t.brand(
   t.string,
   (s): s is t.Branded<string, SnsTopicNameBrand> =>
     RegExp('^' + snsTopicNameRegex() + '$').test(s),
-  'SnsTopicName'
+  'SnsTopicName',
 )
 
 /**

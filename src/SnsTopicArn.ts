@@ -28,7 +28,7 @@ export const SnsTopicArn = t.brand(
   t.string,
   (s): s is t.Branded<string, SnsTopicArnBrand> =>
     RegExp('^' + snsTopicArnRegex() + '$').test(s),
-  'SnsTopicArn'
+  'SnsTopicArn',
 )
 
 /**
@@ -44,5 +44,5 @@ export const snsTopicArn = (parameters: {
   region: AwsRegion
 }) => (topicName: SnsTopicName): SnsTopicArn =>
   ['arn', 'aws', 'sns', parameters.region, parameters.account, topicName].join(
-    ':'
+    ':',
   ) as SnsTopicArn

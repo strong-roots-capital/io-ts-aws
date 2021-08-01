@@ -36,7 +36,7 @@ export const SqsFifoQueueName = t.brand(
   t.string,
   (s): s is t.Branded<string, SqsFifoQueueNameBrand> =>
     RegExp('^' + sqsFifoQueueNameRegex() + '$').test(s),
-  'SqsFifoQueueName'
+  'SqsFifoQueueName',
 )
 
 /**

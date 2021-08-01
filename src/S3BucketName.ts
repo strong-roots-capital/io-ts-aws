@@ -52,7 +52,7 @@ export const S3BucketName = t.brand(
   t.string,
   (s): s is t.Branded<string, S3BucketNameBrand> =>
     RegExp('^' + s3BucketNameRegex() + '$').test(s),
-  'S3BucketName'
+  'S3BucketName',
 )
 
 /**

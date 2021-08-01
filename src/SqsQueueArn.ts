@@ -28,7 +28,7 @@ export const SqsQueueArn = t.brand(
   t.string,
   (s): s is t.Branded<string, SqsQueueArnBrand> =>
     RegExp('^' + sqsQueueArnRegex() + '$').test(s),
-  'SqsQueueArn'
+  'SqsQueueArn',
 )
 
 /**

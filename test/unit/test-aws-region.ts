@@ -39,4 +39,4 @@ const regions = [
   'us-gov-west-1',
 ]
 
-regions.forEach(region => test(shouldRecognizeAwsRegion, region))
+regions.forEach((region) => test(shouldRecognizeAwsRegion, region))
