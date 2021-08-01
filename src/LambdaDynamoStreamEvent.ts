@@ -87,7 +87,11 @@ export const AnyDynamoEvent = DynamoBaseEvent(
  *
  * @since 0.0.3
  */
-export const DynamoInsertEvent = <I extends t.Mixed>(newImage: I) => {
+export const DynamoInsertEvent = <I extends t.Mixed>({
+  newImage,
+}: {
+  newImage: I
+}) => {
   const RawEventCodec = t.type({
     dynamodb: t.type({
       NewImage: t.UnknownRecord,
