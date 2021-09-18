@@ -10,6 +10,18 @@ import * as t from 'io-ts'
  */
 
 /**
+ * @since 0.0.24
+ */
+export const dynamoTableNameRegex = (): string => '[-_.a-zA-Z0-9]{3,255}'
+
+/**
+ * @since 0.0.24
+ */
+export interface DynamoTableNameBrand {
+  readonly DynamoTableName: unique symbol
+}
+
+/**
  * Naming rules:
  *
  * 1. Table names must be between 3 and 255 characters long.
@@ -31,18 +43,6 @@ import * as t from 'io-ts'
  *     ['Invalid value "invalid::tableName" supplied to : DynamoTableName']
  * )
  *
- * @since 0.0.24
- */
-export const dynamoTableNameRegex = (): string => '[-_.a-zA-Z0-9]{3,255}'
-
-/**
- * @since 0.0.24
- */
-export interface DynamoTableNameBrand {
-  readonly DynamoTableName: unique symbol
-}
-
-/**
  * @since 0.0.24
  */
 export const DynamoTableName = t.brand(

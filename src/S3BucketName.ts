@@ -10,6 +10,18 @@ import * as t from 'io-ts'
  */
 
 /**
+ * @since 0.0.22
+ */
+export const s3BucketNameRegex = (): string => '[-a-z0-9.]{3,63}'
+
+/**
+ * @since 0.0.22
+ */
+export interface S3BucketNameBrand {
+  readonly S3BucketName: unique symbol
+}
+
+/**
  * Naming rules:
  *
  * 1. Bucket names must be between 3 and 63 characters long.
@@ -34,18 +46,6 @@ import * as t from 'io-ts'
  *     ['Invalid value "camelCaseBucketName" supplied to : S3BucketName']
  * )
  *
- * @since 0.0.22
- */
-export const s3BucketNameRegex = (): string => '[-a-z0-9.]{3,63}'
-
-/**
- * @since 0.0.22
- */
-export interface S3BucketNameBrand {
-  readonly S3BucketName: unique symbol
-}
-
-/**
  * @since 0.0.22
  */
 export const S3BucketName = t.brand(
