@@ -27,7 +27,7 @@
     "ava": "ava -v",
     "clean": "rimraf --no-glob dist",
     "compile": "tsc",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "coverage": "nyc report --all --reporter=text-lcov > coverage.lcov && codecov",
     "docs": "docs-ts",
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
