@@ -19,6 +19,11 @@ export * from './AwsRegion'
 export * from './CognitoUserPoolID'
 
 /**
+ * @since 0.0.34
+ */
+export * from './CognitoWebClientID'
+
+/**
  * @since 0.0.5
  */
 export * from './DynamoStreamEventID'
