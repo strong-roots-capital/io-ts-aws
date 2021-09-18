@@ -28,6 +28,7 @@
     "clean": "rimraf --no-glob dist",
     "compile": "tsc",
     "coverage": "nyc report --all --reporter=text-lcov > coverage.lcov && codecov",
+    "pre:docs": "rm -r docs/examples",
     "docs": "docs-ts",
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
