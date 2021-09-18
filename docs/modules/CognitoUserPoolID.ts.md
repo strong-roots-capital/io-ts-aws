@@ -16,19 +16,12 @@ Added in v0.0.32
   - [CognitoUserPoolID](#cognitouserpoolid)
   - [CognitoUserPoolID (type alias)](#cognitouserpoolid-type-alias)
   - [CognitoUserPoolIDBrand (interface)](#cognitouserpoolidbrand-interface)
-  - [cognitoUserPoolIDRegex](#cognitouserpoolidregex)
 
 ---
 
 # utils
 
 ## CognitoUserPoolID
-
-Naming rules:
-
-1. Pool names must be between 1 and 128 characters long.
-2. Pool Names can consist only of lowercase letters, uppercase
-   letters, numbers, and the following characters: -+=,.@
 
 **Signature**
 
@@ -43,7 +36,10 @@ import { CognitoUserPoolID } from '@strong-roots-capital/io-ts-aws'
 import { right } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/lib/PathReporter'
 
-assert.deepStrictEqual(CognitoUserPoolID.decode('valid-Pool.name@123'), right('valid-Pool.name@123'))
+assert.deepStrictEqual(
+  CognitoUserPoolID.decode('eu-west-1_valid-Pool.name@123'),
+  right('eu-west-1_valid-Pool.name@123')
+)
 
 assert.deepStrictEqual(PathReporter.report(CognitoUserPoolID.decode('invalid::poolName')), [
   'Invalid value "invalid::poolName" supplied to : CognitoUserPoolID',
@@ -70,16 +66,6 @@ Added in v0.0.32
 export interface CognitoUserPoolIDBrand {
   readonly CognitoUserPoolID: unique symbol
 }
-```
-
-Added in v0.0.32
-
-## cognitoUserPoolIDRegex
-
-**Signature**
-
-```ts
-export declare const cognitoUserPoolIDRegex: () => string
 ```
 
 Added in v0.0.32

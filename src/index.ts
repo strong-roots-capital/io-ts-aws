@@ -19,6 +19,11 @@ export * from './AwsRegion'
 export * from './CognitoUserPoolID'
 
 /**
+ * @since 0.0.35
+ */
+export * from './CognitoUserPoolName'
+
+/**
  * @since 0.0.34
  */
 export * from './CognitoWebClientID'
