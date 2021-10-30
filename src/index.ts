@@ -94,6 +94,11 @@ export * from './SnsTopicName'
 export * from './SnsTopicArn'
 
 /**
+ * @since 0.0.36
+ */
+export * from './SnsSubscriptionArn'
+
+/**
  * @since 0.0.1
  */
 export * from './SqsQueueName'
