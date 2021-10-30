@@ -1,20 +1,10 @@
 {
-  "include": [
-    "docs/**/*",
-    "src/**/*",
-    "test/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
+  "include": ["docs/**/*", "src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "es6"
-    ],
+    "lib": ["dom", "es6"],
     "outDir": "./dist",
     "declaration": true,
     "declarationMap": true,
@@ -27,9 +17,7 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "*": [
-        "src/@types/*"
-      ]
+      "*": ["src/@types/*"]
     }
   }
 }

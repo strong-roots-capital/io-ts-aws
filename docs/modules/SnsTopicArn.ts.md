@@ -1,6 +1,6 @@
 ---
 title: SnsTopicArn.ts
-nav_order: 20
+nav_order: 21
 parent: Modules
 ---
 
@@ -17,6 +17,7 @@ Added in v0.0.1
   - [SnsTopicArn (type alias)](#snstopicarn-type-alias)
   - [SnsTopicArnBrand (interface)](#snstopicarnbrand-interface)
   - [snsTopicArn](#snstopicarn)
+  - [snsTopicArnRegex](#snstopicarnregex)
 
 ---
 
@@ -66,3 +67,13 @@ export declare const snsTopicArn: (parameters: {
 ```
 
 Added in v0.0.2
+
+## snsTopicArnRegex
+
+**Signature**
+
+```ts
+export declare const snsTopicArnRegex: () => string
+```
+
+Added in v0.0.1

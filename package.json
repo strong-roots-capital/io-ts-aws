@@ -1,6 +1,6 @@
 {
   "name": "@strong-roots-capital/io-ts-aws",
-  "version": "0.0.35",
+  "version": "0.0.0-development",
   "description": "io-ts library for aws-sdk",
   "keywords": [
     "io-ts",
@@ -23,18 +23,17 @@
     "dist/src/"
   ],
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile",
     "ava": "ava -v",
     "clean": "rimraf --no-glob dist",
-    "compile": "tsc",
+    "build": "tsc",
     "coverage": "nyc report --all --reporter=text-lcov > coverage.lcov && codecov",
     "pre:docs": "rm -r docs/examples",
     "docs": "docs-ts",
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
     "lint-staged": "lint-staged",
-    "prettier": "prettier --list-different src/**/*.ts test/**/*.ts",
-    "prettier:fix": "prettier --write src/**/*.ts test/**/*.ts",
+    "prettier": "prettier --list-different .",
+    "prettier:fix": "prettier --write .",
     "test": "npm run prettier && npm run lint && nyc ava && npm run docs"
   },
   "dependencies": {
@@ -42,9 +41,11 @@
     "@aws-sdk/util-dynamodb": ">= 3.0.0"
   },
   "devDependencies": {
-    "@ericcrosson/eslint-config": "^2.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.11.1",
-    "@typescript-eslint/parser": "^4.11.1",
+    "@ericcrosson/eslint-config": "^2.1.3",
+    "@ericcrosson/prettier-config": "^1.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "ava": "^3.14.0",
     "ava-fast-check": "^4.0.0",
     "codecov": "^3.8.1",
@@ -65,6 +66,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "2.2.1",
     "rimraf": "^3.0.2",
+    "semantic-release": "^18.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },

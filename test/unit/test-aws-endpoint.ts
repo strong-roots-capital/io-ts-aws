@@ -5,10 +5,8 @@ import test, { ExecutionContext } from 'ava'
  */
 import { AwsEndpoint } from '../../src/AwsEndpoint'
 
-const shouldRecognizeAwsEndpoint = (
-  t: ExecutionContext,
-  region: string,
-): void => t.true(AwsEndpoint.is(region))
+const shouldRecognizeAwsEndpoint = (t: ExecutionContext, region: string): void =>
+  t.true(AwsEndpoint.is(region))
 
 shouldRecognizeAwsEndpoint.title = (_ = '', region: string) =>
   `should recognize aws region ${region}`
@@ -223,21 +221,9 @@ const principals = [
 
 regions.forEach((region) =>
   principals.forEach((principal) => {
-    test(
-      shouldRecognizeAwsEndpoint,
-      `http://${principal}.${region}.amazonaws.com`,
-    )
-    test(
-      shouldRecognizeAwsEndpoint,
-      `https://${principal}.${region}.amazonaws.com`,
-    )
-    test(
-      shouldRecognizeAwsEndpoint,
-      `http://${principal}.${region}.amazonaws.com/`,
-    )
-    test(
-      shouldRecognizeAwsEndpoint,
-      `https://${principal}.${region}.amazonaws.com/`,
-    )
+    test(shouldRecognizeAwsEndpoint, `http://${principal}.${region}.amazonaws.com`)
+    test(shouldRecognizeAwsEndpoint, `https://${principal}.${region}.amazonaws.com`)
+    test(shouldRecognizeAwsEndpoint, `http://${principal}.${region}.amazonaws.com/`)
+    test(shouldRecognizeAwsEndpoint, `https://${principal}.${region}.amazonaws.com/`)
   }),
 )

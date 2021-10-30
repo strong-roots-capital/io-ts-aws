@@ -4,15 +4,15 @@
 
 import * as t from 'io-ts'
 
-import { AwsAccountID } from './AwsAccountID'
-import { AwsRegion } from './AwsRegion'
+import { AwsAccountID, awsAccountIDRegex } from './AwsAccountID'
+import { AwsRegion, awsRegionRegex } from './AwsRegion'
 import { snsTopicNameRegex, SnsTopicName } from './SnsTopicName'
 
 /**
  * @since 0.0.1
  */
-const snsTopicArnRegex = (): string =>
-  `arn:aws:sns:[a-z]+-[a-z]+-[0-9]:[0-9]{12}:${snsTopicNameRegex()}`
+export const snsTopicArnRegex = (): string =>
+  `arn:aws:sns:${awsRegionRegex()}:${awsAccountIDRegex()}:${snsTopicNameRegex()}`
 
 /**
  * @since 0.0.1
