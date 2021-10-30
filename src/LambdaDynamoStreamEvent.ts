@@ -23,9 +23,7 @@ import { EventSourceArn } from './EventSourceArn'
  *
  * @since 0.0.1
  */
-const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
-  K extends t.Mixed
->({
+const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <K extends t.Mixed>({
   keys,
 }: {
   keys: K
@@ -69,10 +67,7 @@ const DynamoBaseEvent = <E extends t.Mixed>(eventName: E) => <
     eventSourceARN: EventSourceArn,
   })
 
-  const keysLens = Lens.fromPath<t.TypeOf<typeof RawEventCodec>>()([
-    'dynamodb',
-    'Keys',
-  ])
+  const keysLens = Lens.fromPath<t.TypeOf<typeof RawEventCodec>>()(['dynamodb', 'Keys'])
 
   return withValidate(UnmarshalledEventCodec, (u, c) =>
     pipe(
@@ -115,11 +110,7 @@ export const AnyDynamoEvent = DynamoBaseEvent(
  *
  * @since 0.0.3
  */
-export const DynamoInsertEvent = <I extends t.Mixed>({
-  newImage,
-}: {
-  newImage: I
-}) => {
+export const DynamoInsertEvent = <I extends t.Mixed>({ newImage }: { newImage: I }) => {
   const RawEventCodec = t.type({
     dynamodb: t.type({
       NewImage: t.UnknownRecord,
@@ -228,9 +219,7 @@ export const DynamoTimeToLiveRemoveEvent = flow(
     ]),
 )
 
-type DynamoTimeToLiveRemoveEvent = ReturnType<
-  typeof DynamoTimeToLiveRemoveEvent
->
+type DynamoTimeToLiveRemoveEvent = ReturnType<typeof DynamoTimeToLiveRemoveEvent>
 
 /**
  * Successfully decodes any dynamo event.

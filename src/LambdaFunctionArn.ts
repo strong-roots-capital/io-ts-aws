@@ -11,10 +11,7 @@ import * as t from 'io-ts'
 
 import { AwsAccountID, awsAccountIDRegex } from './AwsAccountID'
 import { AwsRegion, awsRegionRegex } from './AwsRegion'
-import {
-  LambdaFunctionName,
-  lambdaFunctionNameRegex,
-} from './LambdaFunctionName'
+import { LambdaFunctionName, lambdaFunctionNameRegex } from './LambdaFunctionName'
 
 /**
  * @since 0.0.9

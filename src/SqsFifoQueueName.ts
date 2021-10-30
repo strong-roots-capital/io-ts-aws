@@ -19,8 +19,7 @@ import * as t from 'io-ts'
  *
  * @since 0.0.1
  */
-export const sqsFifoQueueNameRegex = (): string =>
-  '[-a-zA-Z0-9_]{1,75}(?:.fifo)'
+export const sqsFifoQueueNameRegex = (): string => '[-a-zA-Z0-9_]{1,75}(?:.fifo)'
 
 /**
  * @since 0.0.1

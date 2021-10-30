@@ -42,9 +42,7 @@ export interface CognitoUserPoolIDBrand {
 export const CognitoUserPoolID = t.brand(
   t.string,
   (s): s is t.Branded<string, CognitoUserPoolIDBrand> =>
-    RegExp(
-      '^' + awsRegionRegex() + '_' + cognitoUserPoolNameRegex() + '$',
-    ).test(s),
+    RegExp('^' + awsRegionRegex() + '_' + cognitoUserPoolNameRegex() + '$').test(s),
   'CognitoUserPoolID',
 )
 
