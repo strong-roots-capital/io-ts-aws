@@ -23,7 +23,6 @@
     "dist/src/"
   ],
   "scripts": {
-    "prepublishOnly": "npm run build",
     "ava": "ava -v",
     "clean": "rimraf --no-glob dist",
     "build": "tsc",
