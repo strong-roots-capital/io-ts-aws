@@ -1,6 +1,6 @@
 {
   "name": "@strong-roots-capital/io-ts-aws",
-  "version": "0.0.35",
+  "version": "0.0.0-development",
   "description": "io-ts library for aws-sdk",
   "keywords": [
     "io-ts",
@@ -23,10 +23,10 @@
     "dist/src/"
   ],
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile",
+    "prepublishOnly": "npm run build",
     "ava": "ava -v",
     "clean": "rimraf --no-glob dist",
-    "compile": "tsc",
+    "build": "tsc",
     "coverage": "nyc report --all --reporter=text-lcov > coverage.lcov && codecov",
     "pre:docs": "rm -r docs/examples",
     "docs": "docs-ts",
@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@ericcrosson/eslint-config": "^2.0.1",
+    "@semantic-release/git": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "ava": "^3.14.0",
@@ -65,6 +66,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "2.2.1",
     "rimraf": "^3.0.2",
+    "semantic-release": "^18.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
